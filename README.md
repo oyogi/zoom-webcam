@@ -22,6 +22,8 @@ Both scripts use `/dev/video0`, request 30 frames per second, and set the webcam
 
 ### Install dependencies
 
+#### Ubuntu / Debian
+
 On Ubuntu or Debian, install the dependencies for both scripts:
 
 ```bash
@@ -31,7 +33,22 @@ sudo apt install git v4l-utils flatpak gstreamer1.0-tools \
     gstreamer1.0-pipewire
 ```
 
-The [GStreamer PipeWire package](https://packages.ubuntu.com/noble/gstreamer1.0-pipewire) supplies the PipeWire integration. Your desktop must also have a working PipeWire session; installing plugins alone does not configure one.
+The [GStreamer PipeWire package](https://packages.ubuntu.com/noble/gstreamer1.0-pipewire) supplies the PipeWire integration.
+
+#### Fedora
+
+On Fedora Workstation or another Fedora installation managed with DNF, install the dependencies for both scripts:
+
+```bash
+sudo dnf install git v4l-utils flatpak gstreamer1 \
+    gstreamer1-plugins-base gstreamer1-plugins-good pipewire-gstreamer
+```
+
+Fedora's `gstreamer1` package includes `gst-launch-1.0` and `gst-inspect-1.0`. The [pipewire-gstreamer package](https://packages.fedoraproject.org/pkgs/pipewire/pipewire-gstreamer/) provides `pipewiresink`.
+
+Your desktop must have a working PipeWire session to run `webcam_zoom.sh`; installing plugins alone does not configure one.
+
+#### mpv via Flatpak (both distributions)
 
 Install the mpv Flatpak, adding Flathub if needed:
 
@@ -121,3 +138,7 @@ Brightness changes apply to the camera itself and are not restored when the scri
 | `Zoom_Cam` missing from an app | Confirm the pipeline is still running and PipeWire is available. Reopen the app's camera selector; check whether the app supports PipeWire video sources. |
 
 When reporting an issue, include the script used, terminal error output, Linux distribution, and webcam capture modes.
+
+## License
+
+Licensed under the [MIT License](LICENSE).
